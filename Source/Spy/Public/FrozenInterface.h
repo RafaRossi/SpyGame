@@ -22,6 +22,8 @@ class SPY_API IFrozenInterface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	UFUNCTION(BlueprintNativeEvent, Category="Freeze")
 	void Freeze();
+	UFUNCTION(BlueprintNativeEvent, Category="Freeze")
 	void Unfreeze();
 };
