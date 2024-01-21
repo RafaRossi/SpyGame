@@ -7,7 +7,7 @@
 #include "FrozenInterface.h"
 #include "Engine/StaticMeshActor.h"
 #include "GameFramework/Actor.h"
-#include "UFrozenableComponent.generated.h"
+#include "FrozenableComponent.generated.h"
 
 UENUM(Blueprintable)
 enum class EFrozenState : uint8
@@ -36,7 +36,7 @@ public:
 	virtual void Unfreeze_Implementation() override;
 	
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	virtual void ChangeFrozenState();
 
 	UPROPERTY(BlueprintReadWrite, Category="Variables", VisibleAnywhere)

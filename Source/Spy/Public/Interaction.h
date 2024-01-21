@@ -7,6 +7,8 @@
 #include "GameFramework/Actor.h"
 #include "Interaction.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInteractDelegate);
+
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class SPY_API AInteractableArea : public AActor, public IUsable
 {
@@ -29,10 +31,16 @@ public:
 };
 
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class UInteractionComponent : public UActorComponent
+class UInteractionComponent : public UActorComponent, public IUsable
 {
 	GENERATED_BODY()
-
+	
 public:
 	UInteractionComponent();
+
+	/*UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void HandleOnInteract();*/
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnInteractDelegate OnInteract;
 };

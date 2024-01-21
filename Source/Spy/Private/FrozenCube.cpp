@@ -13,9 +13,9 @@ void AFrozenCube::BeginPlay()
 	Super::BeginPlay();
 }
 
-void AFrozenCube::CreateCube(const TSubclassOf<AFrozenCube>& FrozenCube, const FVector& Location, const FRotator& Rotation, AActor* FrozenActor)
+void AFrozenCube::CreateCube(const TSubclassOf<AFrozenCube>& FrozenCube, UWorld* World, const FVector& Location, const FRotator& Rotation, AActor* FrozenActor)
 {
-	if (UWorld* World = GEngine->GetWorld())
+	if (World)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Creating APawn at Location: %s, Rotation: %s"), *Location.ToString(), *Rotation.ToString());
 
@@ -26,13 +26,9 @@ void AFrozenCube::CreateCube(const TSubclassOf<AFrozenCube>& FrozenCube, const F
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("'World' pointer is null in Create"));
+		
+		AFrozenCube* NewCube = GEngine->GetWorldContexts()[0].World()->SpawnActor<AFrozenCube>(FrozenCube, Location, Rotation);
+
+		if(FrozenActor) FrozenActor->AttachToActor(NewCube, FAttachmentTransformRules::SnapToTargetIncludingScale);
 	}
-}
-
-AFrozenCubeSmall::AFrozenCubeSmall()
-{
-}
-
-AFrozenCubeLarge::AFrozenCubeLarge()
-{
 }

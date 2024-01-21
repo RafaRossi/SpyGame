@@ -18,7 +18,7 @@ AInteractableArea::AInteractableArea()
 // Called when the game starts or when spawned
 void AInteractableArea::BeginPlay()
 {
-	Super::BeginPlay();
+	Super::BeginPlay(); 
 	
 }
 
@@ -26,6 +26,8 @@ UInteractionComponent::UInteractionComponent()
 {
 	
 }
+
+
 
 
 

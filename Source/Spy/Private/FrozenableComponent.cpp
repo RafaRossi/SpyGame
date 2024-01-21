@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "..\Public\UFrozenableComponent.h"
+#include "..\Public\FrozenableComponent.h"
 
 // Sets default values
 UFrozenableComponent::UFrozenableComponent()
@@ -20,7 +20,7 @@ void UFrozenableComponent::Freeze_Implementation()
 	UE_LOG(LogTemp, Warning, TEXT("Frozen"))
 
 	AActor* Owner = GetOwner();
-	AFrozenCube::CreateCube(FrozenCube, Owner->GetActorLocation(), FRotator::ZeroRotator, Owner);
+	AFrozenCube::CreateCube(FrozenCube, GetWorld(), Owner->GetActorLocation(), FRotator::ZeroRotator, Owner);
 }
 
 void UFrozenableComponent::Unfreeze_Implementation()
@@ -31,13 +31,13 @@ void UFrozenableComponent::Unfreeze_Implementation()
 
 void UFrozenableComponent::ChangeFrozenState()
 {
-	/*if(FrozenState == EFrozenState::Frozen)
+	if(FrozenState == EFrozenState::Frozen)
 	{
-		Execute_Unfreeze(nullptr);
+		Execute_Unfreeze(this);
 	}
 	else
 	{
-		Execute_Freeze(nullptr);
-	}*/
+		Execute_Freeze(this);
+	}
 }
 
