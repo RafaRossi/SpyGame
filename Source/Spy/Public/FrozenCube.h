@@ -3,13 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/StaticMeshActor.h"
 #include "FrozenCube.generated.h"
 
 /**
  * 
  */
 UCLASS(Blueprintable)
-class SPY_API AFrozenCube : public AActor
+class SPY_API AFrozenCube : public AStaticMeshActor
 {
 	GENERATED_BODY()
 public:

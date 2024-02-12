@@ -21,7 +21,7 @@ void AFrozenCube::CreateCube(const TSubclassOf<AFrozenCube>& FrozenCube, UWorld*
 
 		AFrozenCube* NewCube = World->SpawnActor<AFrozenCube>(FrozenCube, Location, Rotation);
 
-		if(FrozenActor) FrozenActor->AttachToActor(NewCube, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		if(FrozenActor) FrozenActor->AttachToActor(NewCube, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	}
 	else
 	{
@@ -29,6 +29,6 @@ void AFrozenCube::CreateCube(const TSubclassOf<AFrozenCube>& FrozenCube, UWorld*
 		
 		AFrozenCube* NewCube = GEngine->GetWorldContexts()[0].World()->SpawnActor<AFrozenCube>(FrozenCube, Location, Rotation);
 
-		if(FrozenActor) FrozenActor->AttachToActor(NewCube, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		if(FrozenActor) FrozenActor->AttachToActor(NewCube, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	}
 }
