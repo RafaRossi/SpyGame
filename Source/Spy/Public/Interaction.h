@@ -40,6 +40,8 @@ public:
 
 	/*UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void HandleOnInteract();*/
+	UPROPERTY(BlueprintReadWrite)
+	bool bCanInteract; 
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnInteractDelegate OnInteract;
