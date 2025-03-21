@@ -4,7 +4,7 @@
 #include "..\Public\FrozenableComponent.h"
 
 // Sets default values
-UFrozenableComponent::UFrozenableComponent()
+UFrozenableComponent::UFrozenableComponent(): FrozenCubeInstance(nullptr)
 {
 }
 
@@ -17,27 +17,55 @@ void UFrozenableComponent::BeginPlay()
 void UFrozenableComponent::Freeze_Implementation()
 {
 	FrozenState = EFrozenState::Frozen;
-	UE_LOG(LogTemp, Warning, TEXT("Frozen"))
 
 	AActor* Owner = GetOwner();
-	AFrozenCube::CreateCube(FrozenCube, GetWorld(), Owner->GetActorLocation(), FRotator::ZeroRotator, Owner);
+	FrozenCubeInstance = AFrozenCube::CreateCube(FrozenCube, GetWorld(), Owner->GetActorLocation(), FRotator::ZeroRotator, Owner);
+	
 }
 
 void UFrozenableComponent::Unfreeze_Implementation()
 {
 	FrozenState = EFrozenState::Unfrozen;
-	UE_LOG(LogTemp, Warning, TEXT("Unfrozen"))
+
+	if (const AActor* Owner = GetOwner(); Owner && FrozenCubeInstance)
+	{
+		FrozenCubeInstance->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+	}
+	
+	if(FrozenCubeInstance)
+	{
+		FrozenCubeInstance->Destroy();
+		FrozenCubeInstance = nullptr;
+	}
 }
 
 void UFrozenableComponent::ChangeFrozenState()
 {
 	if(FrozenState == EFrozenState::Frozen)
 	{
-		Execute_Unfreeze(this);
+		Frozen();
 	}
 	else
+	{
+		Unfrozen();
+	}
+}
+
+void UFrozenableComponent::Frozen()
+{
+	if(FrozenState != EFrozenState::Frozen)
 	{
 		Execute_Freeze(this);
 	}
 }
+
+void UFrozenableComponent::Unfrozen()
+{
+	if(FrozenState == EFrozenState::Frozen)
+	{
+		Execute_Unfreeze(this);
+	}
+}
+
+
 

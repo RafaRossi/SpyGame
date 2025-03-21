@@ -3,6 +3,8 @@
 
 #include "Device.h"
 
+#include "Spy/Spy.h"
+
 
 // Sets default values
 ADevice::ADevice()
@@ -15,6 +17,5 @@ ADevice::ADevice()
 void ADevice::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 

@@ -22,5 +22,5 @@ protected:
 
 public:
 	UPROPERTY(BlueprintReadWrite, Category="Variables", VisibleAnywhere)
-	FName SocketName = "hand_lSocket";
+	FName SocketName = "Socket";
 };

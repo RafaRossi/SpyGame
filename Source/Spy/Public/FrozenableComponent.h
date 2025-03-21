@@ -29,6 +29,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	TObjectPtr<AFrozenCube> FrozenCubeInstance;
 
 public:
 	virtual void Freeze_Implementation() override;
@@ -37,9 +38,15 @@ public:
 	
 
 	UFUNCTION(BlueprintCallable)
-	virtual void ChangeFrozenState();
+	void ChangeFrozenState();
 
-	UPROPERTY(BlueprintReadWrite, Category="Variables", VisibleAnywhere)
+	UFUNCTION(BlueprintCallable)
+	void Frozen();
+	
+	UFUNCTION(BlueprintCallable)
+	void Unfrozen();
+
+	UPROPERTY(BlueprintReadOnly, Category="Variables", VisibleAnywhere)
 	EFrozenState FrozenState = EFrozenState::Unfrozen;
 
 	UPROPERTY(BlueprintReadWrite, Category="Variables", EditAnywhere, Blueprintable)

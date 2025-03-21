@@ -12,7 +12,7 @@ AInteractableArea::AInteractableArea()
 	RootComponent = CreateDefaultSubobject<USceneComponent>(FName("Root"));
 	
 	TriggerArea = CreateDefaultSubobject<UBoxComponent>(FName("TriggerVolume"));
-	TriggerArea->AttachToComponent(RootComponent, FAttachmentTransformRules::SnapToTargetIncludingScale);
+	TriggerArea->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned

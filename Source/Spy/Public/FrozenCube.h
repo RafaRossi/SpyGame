@@ -22,6 +22,6 @@ protected:
 public:
 	
 	UFUNCTION(Blueprintable)
-	static void CreateCube(const TSubclassOf<AFrozenCube>& FrozenCube, UWorld* World, const FVector& Location, const FRotator& Rotation, AActor* FrozenActor);
+	static AFrozenCube* CreateCube(const TSubclassOf<AFrozenCube>& FrozenCube, UWorld* World, const FVector& Location, const FRotator& Rotation, AActor* FrozenActor);
 };
 
